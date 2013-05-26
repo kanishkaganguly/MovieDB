@@ -1,4 +1,6 @@
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
@@ -8,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.ParserConfigurationException;
@@ -88,7 +92,7 @@ public class main extends javax.swing.JFrame {
         selected_folder = new javax.swing.JLabel();
 
         database.setTitle("My Movies");
-        database.setMinimumSize(new java.awt.Dimension(750, 600));
+        database.setMinimumSize(new java.awt.Dimension(1020, 600));
         database.setResizable(false);
         database.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -99,8 +103,8 @@ public class main extends javax.swing.JFrame {
 
         heading1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         heading1.setText("MY MOVIES");
-        database.getContentPane().add(heading1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
-        database.getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 41, 670, 10));
+        database.getContentPane().add(heading1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+        database.getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1010, 10));
 
         movie_names.setAutoCreateRowSorter(true);
         movie_names.setModel(new javax.swing.table.DefaultTableModel(
@@ -124,11 +128,11 @@ public class main extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(movie_names);
 
-        database.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, 350, 320));
+        database.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 57, 350, 360));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("MOVIE INFO");
-        database.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
+        database.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -181,7 +185,7 @@ public class main extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(jLabel8)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,22 +196,25 @@ public class main extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(genre_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(director_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(rated_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(rated_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(title_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(year_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(year_text)
+                            .addComponent(title_text, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
-            .addComponent(jScrollPane1)
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {director_text, genre_text, rated_text, title_text, year_text});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -251,7 +258,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {director_text, genre_text, rated_text, title_text, year_text});
 
-        database.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 300, 330));
+        database.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 300, 330));
 
         jButton1.setText("FETCH DATA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -259,16 +266,16 @@ public class main extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        database.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, -1));
+        database.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, -1, -1));
 
         downloading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         downloading.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        database.getContentPane().add(downloading, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 240, 20));
+        database.getContentPane().add(downloading, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 240, 20));
 
         image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         image.setText("IMAGE");
         image.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        database.getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 140, 90));
+        database.getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 300, 410));
 
         disclaimer.setMinimumSize(new java.awt.Dimension(500, 500));
         disclaimer.setResizable(false);
@@ -392,11 +399,8 @@ public class main extends javax.swing.JFrame {
 
     private void folder_showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_folder_showActionPerformed
         int returnVal = fc.showDialog(this, "Choose");
-        selected_folder.setText("E:\\Movies\\");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
-            fc.setSelectedFile(file);
-
         } else if (returnVal == JFileChooser.CANCEL_OPTION) {
             fc.cancelSelection();
         }
@@ -441,43 +445,150 @@ public class main extends javax.swing.JFrame {
         int coord = movie_names.getSelectedRow();
         int coord2 = movie_names.getSelectedColumn();
         nameClick = (String) movie_names.getValueAt(coord, coord2);
-        String nameClick2 = nameClick.replaceAll("\\.", " ");
-        nameClick2 = nameClick2.replaceAll(" ", "%20");
-        String urlString = "http://www.omdbapi.com/?t=" + nameClick2 + "&r=XML";
-        System.out.println(urlString);
+        String nameClick2 = manipulator(nameClick);
 
+        String urlString = "http://www.omdbapi.com/?t=" + nameClick2 + "&r=XML";
         try {
-            URL url = new URL(urlString);
-            URLConnection conn = url.openConnection();
-            int size = conn.getContentLength();
-            downloading.setText("DOWNLOADED " + (float) (size) + " BYTES OF DATA");
-            InputStream is = conn.getInputStream();
-            new FileOutputStream(nameClick + "_XML.xml").write(IOUtils.readFully(is, -1, false));
-            downloading.setText("DATA RETRIEVED");
+            File check = new File(nameClick + "_XML.xml");
+            if (!check.exists()) {
+                URL url = new URL(urlString);
+                URLConnection conn = url.openConnection();
+                int size = conn.getContentLength();
+                downloading.setText("DOWNLOADED " + (float) (size) + " BYTES OF DATA");
+                InputStream is = conn.getInputStream();
+                new FileOutputStream(nameClick + "_XML.xml").write(IOUtils.readFully(is, -1, false));
+            }
             File fXmlFile = new File(nameClick + "_XML.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = (Document) dBuilder.parse(fXmlFile);
             doc.getDocumentElement().normalize();
-            NodeList nList = doc.getElementsByTagName("movie");
+            NodeList nList = doc.getElementsByTagName("root");
             Node nNode = nList.item(0);
             Element eElement = (Element) nNode;
-            /*String image_URL = (eElement.getAttribute("poster"));
-             URL img_url = new URL(image_URL);
-             BufferedImage img = ImageIO.read(img_url);
-             ImageIcon img_icon = new ImageIcon(img);
-             image.setIcon(img_icon);*/
-            title_text.setText(eElement.getAttribute("title"));
-            year_text.setText(eElement.getAttribute("year"));
-            rated_text.setText(eElement.getAttribute("imdbRating"));
-            genre_text.setText(eElement.getAttribute("genre"));
-            director_text.setText(eElement.getAttribute("director"));
-            plot_text.setText(eElement.getAttribute("plot"));
-            actors_text.setText(eElement.getAttribute("actors"));
-        } catch (IOException | ParserConfigurationException | SAXException e) {
-            error.showMessageDialog(this, e);
+            if (eElement.getAttribute("response").equals("False")) {
+                title_text.setText("");
+                year_text.setText("");
+                rated_text.setText("");
+                genre_text.setText("");
+                director_text.setText("");
+                plot_text.setText("");
+                actors_text.setText("");
+                image.setText("IMAGE");
+                downloading.setText("RETRIEVE FAILED");
+            } else {
+                nList = doc.getElementsByTagName("movie");
+                nNode = nList.item(0);
+                eElement = (Element) nNode;
+                if ((eElement.getAttribute("poster") != null)) {
+                    String image_URL = (eElement.getAttribute("poster"));
+                    URL img_url = new URL(image_URL);
+                    BufferedImage img = ImageIO.read(img_url);
+                    ImageIcon img_icon = new ImageIcon(img.getScaledInstance(image.getWidth(), image.getHeight(), Image.SCALE_SMOOTH));
+                    image.setText("");
+                    image.setIcon(img_icon);
+                } else {
+                    image.setText("NO IMAGE");
+                }
+                if ((eElement.getAttribute("title") != null) || (eElement.getAttribute("year") != null) || (eElement.getAttribute("imdbRating") != null) || (eElement.getAttribute("genre") != null) || (eElement.getAttribute("director") != null) || (eElement.getAttribute("plot") != null)) {
+                    title_text.setText(eElement.getAttribute("title"));
+                    year_text.setText(eElement.getAttribute("year"));
+                    rated_text.setText(eElement.getAttribute("imdbRating"));
+                    genre_text.setText(eElement.getAttribute("genre"));
+                    director_text.setText(eElement.getAttribute("director"));
+                    plot_text.setText(eElement.getAttribute("plot"));
+                    actors_text.setText(eElement.getAttribute("actors"));
+                } else {
+                    title_text.setText("");
+                    year_text.setText("");
+                    rated_text.setText("");
+                    genre_text.setText("");
+                    director_text.setText("");
+                    plot_text.setText("");
+                    actors_text.setText("");
+                    image.setText("IMAGE");
+                    image.setIcon(null);
+                    downloading.setText("RETRIEVE FAILED");
+                }
+            }
+        } catch (Exception e) {
+            title_text.setText("");
+            year_text.setText("");
+            rated_text.setText("");
+            genre_text.setText("");
+            director_text.setText("");
+            plot_text.setText("");
+            actors_text.setText("");
+            image.setText("IMAGE");
+            image.setIcon(null);
+            downloading.setText("RETRIEVE FAILED");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+    public static String manipulator(String old_text) {
+        if (old_text.contains(".")) {
+            old_text = old_text.replace(".", " ");
+        }
+        if (old_text.contains("_")) {
+            old_text = old_text.replace("_", " ");
+        }
+        if (old_text.contains("-")) {
+            old_text = old_text.replace("-", "");
+        }
+
+        int open_bracket = 0, close_bracket = 0;
+
+        if (old_text.contains("[") || old_text.contains("]")) {
+            while (old_text.contains("[") || old_text.contains("]")) {
+                close_bracket = old_text.indexOf("]");
+                open_bracket = old_text.indexOf("[");
+                old_text = old_text.replace(old_text.subSequence(open_bracket, close_bracket + 1), "");
+            }
+        }
+        if (old_text.contains("(") || old_text.contains(")")) {
+            while (old_text.contains("(") || old_text.contains(")")) {
+                close_bracket = old_text.indexOf(")");
+                open_bracket = old_text.indexOf("(");
+                old_text = old_text.replace(old_text.subSequence(open_bracket, close_bracket + 1), "");
+            }
+        }
+
+        if (old_text.matches(".*20[\\d][\\d].*")) {
+            old_text = old_text.replaceAll("20[\\d][\\d]", "");
+        }
+        String uploaders[] = {"aXXo", "FXG", "FxM", "KLAXXON", "NikonXp", "YIFY", "SaM", "ALLiANCE", "DIAMOND", "Noir", "ETRG"};
+        for (int i = 0; i < uploaders.length; i++) {
+            if (old_text.toLowerCase().contains(uploaders[i].toLowerCase())) {
+                old_text = old_text.toLowerCase().replace(uploaders[i].toLowerCase(), "");
+            }
+        }
+        String formats[] = {"CAM", "CAMRip", "TS", "TELESYNC", "TC", "TELECINE", "SCR", "SCREENER", "DVDSCR", "BDSCR", "R5", "R5.LINE", "DVDRip", "BDRip", "BDR", "BRRip", "BluRay"};
+        for (int i = 0; i < formats.length; i++) {
+            if (old_text.toLowerCase().contains(formats[i].toLowerCase())) {
+                old_text = old_text.toLowerCase().replace(formats[i].toLowerCase(), "");
+            }
+        }
+
+        String resolutions[] = {"480p", "240p", "360p", "720p", "1080p", "HD"};
+        for (int i = 0; i < resolutions.length; i++) {
+            if (old_text.toLowerCase().contains(resolutions[i].toLowerCase())) {
+                old_text = old_text.toLowerCase().replace(resolutions[i].toLowerCase(), "");
+            }
+        }
+        if (old_text.matches(".*{2,}.*")) {
+            old_text = old_text.replaceAll(" {2,}", "");
+        }
+
+        String codecs[] = {"DivX", "XviD", "x264", "FFmpeg", "H.264"};
+        for (int i = 0; i < codecs.length; i++) {
+            if (old_text.toLowerCase().contains(codecs[i].toLowerCase())) {
+                old_text = old_text.toLowerCase().replace(codecs[i].toLowerCase(), "");
+            }
+        }
+
+        old_text = old_text.replace(" ", "%20");
+
+        return old_text;
+    }
 
     /**
      * @param args the command line arguments
